@@ -6,12 +6,13 @@
 /*   By: jeonhyun <jeonhyun@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 12:04:59 by jeonhyun          #+#    #+#             */
-/*   Updated: 2021/02/13 15:55:20 by jeonhyun         ###   ########.fr       */
+/*   Updated: 2021/05/20 17:58:38 by jeonhyun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+/*
 size_t	ft_strlen(const char *s)
 {
 	unsigned int	i;
@@ -23,6 +24,7 @@ size_t	ft_strlen(const char *s)
 	}
 	return (i);
 }
+*/
 
 char	*ft_strchr(const char *s, int c)
 {

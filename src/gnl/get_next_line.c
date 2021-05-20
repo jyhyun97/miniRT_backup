@@ -6,7 +6,7 @@
 /*   By: jeonhyun <jeonhyun@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 12:03:43 by jeonhyun          #+#    #+#             */
-/*   Updated: 2021/02/14 16:59:37 by jeonhyun         ###   ########.fr       */
+/*   Updated: 2021/05/20 19:00:47 by jeonhyun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	split_line(char **line, char **bkup, char *bkup_p)
 	*bkup_p = '\0';
 	if (!(*line = ft_strdup(*bkup)))
 		return (-1);
-	if (bkup_p + 1 == '\0')
+	if (*(bkup_p + 1) == '\0')
 	{
 		free(*bkup);
 		*bkup = 0;

@@ -1,7 +1,18 @@
 NAME = miniRT
 FLAGS = -Wall -Wextra -Werror
 SRCS_C = main.c\
-		 parsing/string.c
+		 parsing/string.c\
+		 parsing/atoi.c\
+		 parsing/list.c\
+		 parsing/set_list.c\
+		 parsing/error.c\
+		 parsing/split.c\
+		 parsing/check.c\
+		 parsing/element_1.c\
+	   	 parsing/element_2.c\
+		 parsing/element_3.c\
+		 gnl/get_next_line.c\
+		 gnl/get_next_line_utils.c
 SRCS = $(addprefix src/, $(SRCS_C))
 
 OBJS = $(SRCS:.c=.o)
