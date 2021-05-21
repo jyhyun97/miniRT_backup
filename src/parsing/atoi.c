@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   atoi.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeonhyun <jeonhyun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeonhyun <jeonhyun@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/20 18:46:56 by jeonhyun          #+#    #+#             */
-/*   Updated: 2021/05/20 18:47:40 by jeonhyun         ###   ########.fr       */
+/*   Created: 2021/05/21 13:10:23 by jeonhyun          #+#    #+#             */
+/*   Updated: 2021/05/21 13:10:46 by jeonhyun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int ft_atoi(const char *str)
     return (rst * pmsign);
 }
 
-double ft_pow(double a, double b)
+static double ft_pow(double a, double b)
 {
     double rst;
     int i;

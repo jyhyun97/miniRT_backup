@@ -6,7 +6,7 @@
 /*   By: jeonhyun <jeonhyun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 17:21:44 by jeonhyun          #+#    #+#             */
-/*   Updated: 2021/05/20 17:50:30 by jeonhyun         ###   ########.fr       */
+/*   Updated: 2021/05/21 12:24:15 by jeonhyun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,26 @@ int				count_split(char **split)
     while (*split++ != 0)
         i++;
     return (i);
+}
+
+int				count_comma(char **split)
+{
+	int i;
+	int j;
+	int cnt;
+
+	cnt = 0;
+	i = 0;
+	while(split[i] != 0)
+	{
+		j = 0;
+		while(split[i][j] != '\0')
+		{
+			if (split[i][j] == ',')
+				cnt++;
+			j++;
+		}
+		i++;
+	}
+	return (cnt);
 }

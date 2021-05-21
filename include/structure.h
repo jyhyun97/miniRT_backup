@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structure.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeonhyun <jeonhyun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeonhyun <jeonhyun@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/20 15:43:10 by jeonhyun          #+#    #+#             */
-/*   Updated: 2021/05/20 17:28:09 by jeonhyun         ###   ########.fr       */
+/*   Created: 2021/05/21 13:08:09 by jeonhyun          #+#    #+#             */
+/*   Updated: 2021/05/21 19:02:34 by jeonhyun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct	s_vec
 }				t_vec;
 
 typedef struct s_vec	t_color;
+typedef struct s_vec	t_point;
 
 typedef struct	s_rt_info
 {
@@ -55,5 +56,95 @@ typedef struct	s_list
 	t_node	*head;
 	t_node	*tail;
 }				t_list;
+
+typedef struct	s_image
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_image;
+
+typedef struct	s_ray
+{
+	t_point	orig;
+	t_vec	dir;
+}				t_ray;
+
+typedef struct	s_camera
+{
+	t_point	orig;
+	double	viewport_h;
+	double	viewport_w;
+	t_vec	horizontal;
+	t_vec	vertical;
+	double	focal_len;
+	t_point	left_bottom;
+}				t_camera;
+
+typedef struct	s_canvas
+{
+	int		width;
+	int		height;
+	double	aspect_ratio;
+}				t_canvas;
+
+typedef	struct	s_sphere
+{
+	t_point	center;
+	double	radius;
+	double	radius2;
+	t_color	color;
+}				t_sphere;
+
+typedef struct	s_plane
+{
+	t_point	center;
+	t_vec	normal_vector;
+	t_color	color;
+}				t_plane;
+
+typedef struct	s_square
+{
+	t_point	center;
+	t_vec	normal_vector;
+	double	length;
+	t_color	color;
+}				t_square;
+
+typedef struct	s_cylinder
+{
+	t_point	center;
+	t_vec	normal_vector;
+	double	diameter;
+	double	height;
+	t_color	color;
+}				t_cylinder;
+
+typedef struct	s_triangle
+{
+	t_point	point1;
+	t_point	point2;
+	t_point	point3;
+	t_color	color;
+}				t_triangle;
+
+typedef struct	s_hit_record
+{
+	t_point	p;
+	t_vec	normal;
+	double	tmin;
+	double	tmax;
+	double	t;
+	int		front_face;
+}				t_hit_record;
+
+typedef struct	s_object
+{
+	char	*id;
+	void	*element;
+	void	*next;
+}				t_object;
 
 #endif

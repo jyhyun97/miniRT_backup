@@ -6,7 +6,7 @@
 /*   By: jeonhyun <jeonhyun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 16:54:53 by jeonhyun          #+#    #+#             */
-/*   Updated: 2021/05/20 17:34:00 by jeonhyun         ###   ########.fr       */
+/*   Updated: 2021/05/21 15:49:42 by jeonhyun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,14 @@ void	add_node(t_list *list, t_rt_info data)
 	}
 }
 
-void	search_node(t_list *list, char *s)
+void	search_node(t_list **list, char *s)
 {
-	while (list->cur != 0)
+	while ((*list)->cur != 0)
 	{
-		if (ft_strcmp(list->cur->data.id, s) == 0)
+		if (ft_strcmp((*list)->cur->data.id, s) == 0)
 			return ;
 		else
-			list->cur = list->cur->next;
+			(*list)->cur = (*list)->cur->next;
 	}
 }
 

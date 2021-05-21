@@ -12,7 +12,8 @@ SRCS_C = main.c\
 	   	 parsing/element_2.c\
 		 parsing/element_3.c\
 		 gnl/get_next_line.c\
-		 gnl/get_next_line_utils.c
+		 gnl/get_next_line_utils.c\
+		 rendering/set_image.c
 SRCS = $(addprefix src/, $(SRCS_C))
 
 OBJS = $(SRCS:.c=.o)
@@ -20,7 +21,7 @@ OBJS = $(SRCS:.c=.o)
 	gcc $(FLAGS) -c $< -o $@ -I include
 
 $(NAME) : $(OBJS)
-	@gcc $(FLAGS) -Lmlx -lmlx -framework OpenGL -framework Appkit $(OBJS) -o $(NAME)
+	@gcc $(FLAGS) -L./mlx -lmlx -framework OpenGL -framework Appkit $(OBJS) -o $(NAME)
 all : $(NAME)
 
 clean :
