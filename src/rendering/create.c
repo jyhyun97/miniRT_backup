@@ -6,7 +6,7 @@
 /*   By: jeonhyun <jeonhyun@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 19:21:57 by jeonhyun          #+#    #+#             */
-/*   Updated: 2021/05/21 19:49:38 by jeonhyun         ###   ########.fr       */
+/*   Updated: 2021/05/26 17:45:47 by jeonhyun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,11 @@ t_canvas	canvas(int width, int height)
 
 	canvas.width = width;
 	canvas.height = height;
-	canvas.aspect_ratio = (double)width / (double)/height;
+	canvas.aspect_ratio = (double)width / (double)height;
 	return (canvas);
 }
 
-t_camera	camera(t_canvas *canvas, t_point orig)
+t_camera	camera(t_canvas *canvas, t_point orig, t_vec normal_vector)
 {
 	t_camera	cam;
 	double		focal_len;
@@ -73,9 +73,12 @@ t_camera	camera(t_canvas *canvas, t_point orig)
 	cam.viewport_h = viewport_height;
 	cam.viewport_w = viewport_height * canvas->aspect_ratio;
 	cam.focal_len = focal_len;
-	cam.horizontal = vec(cam.viewport_w, 0, 0);
-	cam.vertical = vec(0, cam.viewport_h, 0);
-	cam.left_bottom = vminus(vminus(cam.orig, vdivide(cam.horizontal, 2)), vdivide(cam.vertical, 2)), vec3(0, 0, focal_len);
+	cam.horizontal = vplus(vec(cam.viewport_w, 0, 0), normal_vector);
+	cam.vertical = vplus(vec(0, cam.viewport_h, 0), normal_vector);
+	//normal_vector = vec(0, 0, 0);
+	//cam.horizontal = vec(cam.viewport_w, 0 , 0);
+	//cam.vertical = vec(0, cam.viewport_h, 0);
+	cam.left_bottom = vminus(vminus(vminus(cam.orig, vdivide(cam.horizontal, 2)), vdivide(cam.vertical, 2)), vec(0, 0, focal_len));
 	return (cam);
 }
 

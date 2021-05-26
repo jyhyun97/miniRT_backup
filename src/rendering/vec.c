@@ -6,11 +6,12 @@
 /*   By: jeonhyun <jeonhyun@student.42seoul>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 19:22:45 by jeonhyun          #+#    #+#             */
-/*   Updated: 2021/05/21 19:39:03 by jeonhyun         ###   ########.fr       */
+/*   Updated: 2021/05/26 12:14:51 by jeonhyun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/rendering.h"
+#include "../../include/parsing.h"
 
 void	vset(t_vec *vec, double x, double y, double z)
 {
@@ -59,7 +60,7 @@ t_vec	vmult(t_vec vec, double t)
 	return (vec);
 }
 
-t_vec	vmult_(t_vec vec, t_vec2)
+t_vec	vmult_(t_vec vec, t_vec vec2)
 {
 	vec.x *= vec2.x;
 	vec.y *= vec2.y;
@@ -96,7 +97,7 @@ t_vec	vcross(t_vec vec, t_vec vec2)
 
 	new.x = vec.y * vec2.z - vec.z * vec2.y;
 	new.y = vec.z * vec2.x - vec.x * vec2.z;
-	mew.z = vec.x * vec2.y - vec.y * vec2.x;
+	new.z = vec.x * vec2.y - vec.y * vec2.x;
 	return (new);
 }
 

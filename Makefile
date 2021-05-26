@@ -13,7 +13,9 @@ SRCS_C = main.c\
 		 parsing/element_3.c\
 		 gnl/get_next_line.c\
 		 gnl/get_next_line_utils.c\
-		 rendering/set_image.c
+		 rendering/set_image.c\
+		 rendering/create.c\
+		 rendering/vec.c
 SRCS = $(addprefix src/, $(SRCS_C))
 
 OBJS = $(SRCS:.c=.o)
