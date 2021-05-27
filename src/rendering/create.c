@@ -6,7 +6,7 @@
 /*   By: jeonhyun <jeonhyun@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 19:21:57 by jeonhyun          #+#    #+#             */
-/*   Updated: 2021/05/26 17:45:47 by jeonhyun         ###   ########.fr       */
+/*   Updated: 2021/05/27 21:21:16 by jeonhyun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,14 @@ t_camera	camera(t_canvas *canvas, t_point orig, t_vec normal_vector)
 	cam.viewport_h = viewport_height;
 	cam.viewport_w = viewport_height * canvas->aspect_ratio;
 	cam.focal_len = focal_len;
-	cam.horizontal = vplus(vec(cam.viewport_w, 0, 0), normal_vector);
-	cam.vertical = vplus(vec(0, cam.viewport_h, 0), normal_vector);
+
+	cam.horizontal = vec(cam.viewport_w, 0, 0);
+	cam.vertical = vec(0, cam.viewport_h, 0);
 	//normal_vector = vec(0, 0, 0);
-	//cam.horizontal = vec(cam.viewport_w, 0 , 0);
+	//cam.horizontal = vec(cam.viewport_w, 0, 0);
 	//cam.vertical = vec(0, cam.viewport_h, 0);
 	cam.left_bottom = vminus(vminus(vminus(cam.orig, vdivide(cam.horizontal, 2)), vdivide(cam.vertical, 2)), vec(0, 0, focal_len));
+	
 	return (cam);
 }
 
@@ -89,4 +91,12 @@ t_sphere	sphere(t_point center, double radius)
 	sp.radius = radius;
 	sp.radius2 = radius * radius;
 	return (sp);
+}
+
+t_plane		plane(t_point center, t_vec normal_vector)
+{
+	t_plane pl;
+	pl.center = center;
+	pl.normal_vector = normal_vector;
+	return (pl);
 }

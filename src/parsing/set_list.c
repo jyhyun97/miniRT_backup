@@ -6,7 +6,7 @@
 /*   By: jeonhyun <jeonhyun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 17:37:29 by jeonhyun          #+#    #+#             */
-/*   Updated: 2021/05/21 15:58:16 by jeonhyun         ###   ########.fr       */
+/*   Updated: 2021/05/27 14:08:39 by jeonhyun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,13 @@ int	set_list(t_list *list, char *argv)
 	if (check_id(list) == -1)
 		put_err("check R or A", list);
 	close(fd);
+	list->cur = list->head;
+	printf("list\n");
+	while (list->cur != 0)
+	{
+		printf("%f ", list->cur->data.color.x);
+		list->cur = list->cur->next;
+	}
+	
 	return (0);
 }

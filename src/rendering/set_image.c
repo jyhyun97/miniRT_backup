@@ -6,7 +6,7 @@
 /*   By: jeonhyun <jeonhyun@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 16:00:39 by jeonhyun          #+#    #+#             */
-/*   Updated: 2021/05/26 18:00:03 by jeonhyun         ###   ########.fr       */
+/*   Updated: 2021/05/27 17:52:17 by jeonhyun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ void	mlx_pixel_put_img(t_image *img, int x, int y, int color)
 
 	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
 	*(unsigned int*)dst = color;
+}
+
+int	create_rgb(int r, int g, int b)
+{
+	return (r << 16 | g << 8 | b);
 }
 
 t_ray	set_ray(t_camera cam, double u, double v)//make one ray beam~~
@@ -40,12 +45,16 @@ int	is_object(t_rt_info data)
 		return (0);
 }
 
-double intersect_len_sp(t_rt_info data, t_ray ray)
+int	is_intersect_pl(t_rt_info data, t_ray ray)
 {
-	t_sphere sp;
-	sp = sphere(data.coor1, data.diameter);
-	
-	//ray ~ t distance
+	t_plane pl;
+	pl = plane(data.coor1, data.normal_vector);
+
+	t_vec p_vec = vplus(pl.center, pl.normal_vector);
+	t_vec r_vec = vplus(ray.orig, ray.dir);
+	double discriminant = vdot(p_vec, r_vec);
+
+	return ((int)discriminant == 0);
 }
 
 int	find_intersect_len(t_rt_info data, t_ray ray)
@@ -64,35 +73,30 @@ int	find_intersect_len(t_rt_info data, t_ray ray)
 	else if (data.id == "tr")
 		rst = intersect_len_tr(data, ray);
 	*/
-	if (ft_strcmp(data.id, "sp") == 0)
-		rst = intersect_len_sp(data, ray);
+	if (ft_strcmp(data.id, "pl") == 0)
+		rst = is_intersect_pl(data, ray);
 	return (rst);
 }
 
-t_node *set_object(t_ray ray, t_list *list)
+int set_object(t_ray ray, t_list *list)
 {
-//오브젝트들을 검사하면서, 레이에서 가장 가까운 교점을 선택해서 그 오브젝트 포인터를 반환한다
-	t_node *rtn = 0;
-	double min = INFINITY;
-	double intersect_len = INFINITY;
+//그냥 그 오브젝트의 색상값 반환하는 걸로 바꿨다... 그냥.... 임시로...
+//아니... 일단 true false만.. 하자... 천천히.. 하자..
+	t_color rtn = color(255, 255, 255);//디폴트 컬러. 이건 따로 define하는 게 나을 것 같네
 
 	list->cur = list->head;
 	while (list->cur != 0)
 	{
 		if (is_object(list->cur->data) == 1)
 		{
-			intersect_len = find_intersect_len(list->cur->data, ray);
-			if (intersect_len < min)
+			if(find_intersect_len(list->cur->data, ray) > 0)
 			{
-				min = intersect_len;
-				rtn = list->cur;
+				rtn = list->cur->data.color;
 			}
 		}
 		list->cur = list->cur->next;
 	}
-	if (min == INFINITY)
-		put_err("object error", list);
-	return (rtn);
+	return (create_rgb((int)rtn.x, (int)rtn.y, (int)rtn.z));
 }
 
 
@@ -118,9 +122,9 @@ t_image	set_image(t_image img, t_list *list)
 		{
 			color = 0x00ffffff;//기본 배경색
 			ray = set_ray(cam, (double)i / (canv.width - 1), (double)j / (canv.height - 1));
-			list->cur = set_object(ray, list);
-			if (ft_strcmp(list->cur->data.id, "sp") == 0) //테스트용
-				color = 0x00000000;
+			color = set_object(ray, list);
+			//if (ft_strcmp(list->cur->data.id, "pl") == 0) //테스트용
+			//	color = 0x00000000;
 			//color = set_color();//오브젝트에 주변광, 스팟광, 그림자 등 적용하기
 			mlx_pixel_put_img(&img, i, j, color);
 		}

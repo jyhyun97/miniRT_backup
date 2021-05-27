@@ -6,7 +6,7 @@
 /*   By: jeonhyun <jeonhyun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 18:28:55 by jeonhyun          #+#    #+#             */
-/*   Updated: 2021/05/20 19:03:12 by jeonhyun         ###   ########.fr       */
+/*   Updated: 2021/05/27 14:01:30 by jeonhyun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ int add_color(char **split, t_color *color)
     }
     checker = 0;
     checker += check_int(*tmp_color);
-    color->x = atoi(*tmp_color);
+    color->x = ft_atod(*tmp_color);
     tmp_color++;
     checker += check_int(*tmp_color);
-    color->y = atoi(*tmp_color);
+    color->y = ft_atod(*tmp_color);
     tmp_color++;
     checker += check_int(*tmp_color);
-    color->z = atoi(*tmp_color);
+    color->z = ft_atod(*tmp_color);
     tmp_color -= 2;
     allo_free(tmp_color);
     if (color->x > 255 || color->y > 255 || color->z > 255 || checker != 0)

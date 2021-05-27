@@ -6,7 +6,7 @@
 /*   By: jeonhyun <jeonhyun@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 13:08:27 by jeonhyun          #+#    #+#             */
-/*   Updated: 2021/05/26 11:54:25 by jeonhyun         ###   ########.fr       */
+/*   Updated: 2021/05/27 12:07:06 by jeonhyun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,6 @@ t_ray   ray(t_point orig, t_vec dir);
 t_canvas    canvas(int width, int height);
 t_camera    camera(t_canvas *canvas, t_point orig, t_vec normal_vector);
 t_sphere    sphere(t_point center, double radius);
-
+t_plane		plane(t_point center, t_vec normal_vector);
 
 #endif
