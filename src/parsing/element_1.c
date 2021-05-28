@@ -6,12 +6,13 @@
 /*   By: jeonhyun <jeonhyun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 18:28:55 by jeonhyun          #+#    #+#             */
-/*   Updated: 2021/05/27 14:01:30 by jeonhyun         ###   ########.fr       */
+/*   Updated: 2021/05/28 20:01:41 by jeonhyun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/structure.h"
 #include "../../include/parsing.h"
+#include "../../include/rendering.h"
 
 int add_color(char **split, t_color *color)
 {
@@ -67,7 +68,7 @@ int add_coordinate(char **split, t_vec *coor)
     return (0);
 }
 
-int	add_normalized_vector(char **split, t_vec *normalized_vector)
+int	add_normalized_vector(char **split, t_vec *normal_vector)
 {
     char	**split_normal_vector;
     int		checker;
@@ -75,18 +76,35 @@ int	add_normalized_vector(char **split, t_vec *normalized_vector)
     split_normal_vector = ft_split(*split, ',');
     checker = 0;
     checker += check_double(*split_normal_vector);
-    normalized_vector->x = ft_atod(*split_normal_vector);
+    normal_vector->x = ft_atod(*split_normal_vector);
     split_normal_vector++;
     checker += check_double(*split_normal_vector);
-    normalized_vector->y = ft_atod(*split_normal_vector);
+    normal_vector->y = ft_atod(*split_normal_vector);
     checker += check_double(*split_normal_vector);
     split_normal_vector++;
-    normalized_vector->z = ft_atod(*split_normal_vector);
+    normal_vector->z = ft_atod(*split_normal_vector);
 
     split_normal_vector -= 2;
     allo_free(split_normal_vector);
-    if (normalized_vector->x < -1 || normalized_vector->x > 1 || normalized_vector->y < -1 ||
-        normalized_vector->y > 1 || normalized_vector->z < -1 || normalized_vector->z > 1 || checker != 0)
+    if (normal_vector->x < -1 || normal_vector->x > 1 || normal_vector->y < -1 ||
+        normal_vector->y > 1 || normal_vector->z < -1 || normal_vector->z > 1 || checker != 0)
         return (-1);
+    return (0);
+}
+
+int add_pl(char **split, t_rt_info data, t_list *list)
+{
+    data.id = "pl";
+    split++;
+    if (add_coordinate(split, &data.coor1) == -1)
+        return (-1);
+    split++;
+    if (add_normalized_vector(split, &data.normal_vector) == -1)
+        return (-1);
+    split++;
+    if (add_color(split, &data.color) == -1)
+        return (-1);
+
+    add_node(list, data);
     return (0);
 }

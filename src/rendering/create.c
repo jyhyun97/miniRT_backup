@@ -6,7 +6,7 @@
 /*   By: jeonhyun <jeonhyun@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 19:21:57 by jeonhyun          #+#    #+#             */
-/*   Updated: 2021/05/27 21:21:16 by jeonhyun         ###   ########.fr       */
+/*   Updated: 2021/05/28 21:55:51 by jeonhyun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,26 +61,27 @@ t_canvas	canvas(int width, int height)
 	return (canvas);
 }
 
-t_camera	camera(t_canvas *canvas, t_point orig, t_vec normal_vector)
+double get_radian(double fov)
+{
+	return (fov / M_PI);
+}
+
+
+t_camera	camera(t_canvas *canvas, t_rt_info data)
 {
 	t_camera	cam;
-	double		focal_len;
-	double		viewport_height;
+	t_vec	axis[3];
 
-	viewport_height = 2.0;
-	focal_len = 1.0;
-	cam.orig = orig;
-	cam.viewport_h = viewport_height;
-	cam.viewport_w = viewport_height * canvas->aspect_ratio;
-	cam.focal_len = focal_len;
+	cam.orig = data.coor1;
+	cam.viewport_h = 2 * tan(data.view_degree / 2);
+	cam.viewport_w = cam.viewport_h * (double)(canvas->height/canvas->width);
+	axis[0] = vnorm(vmult(data.normal_vector, -1));
+	axis[1] = vcross(vec(0, 1, 0), axis[0]);
+	axis[2] = vcross(axis[0], axis[1]);
 
-	cam.horizontal = vec(cam.viewport_w, 0, 0);
-	cam.vertical = vec(0, cam.viewport_h, 0);
-	//normal_vector = vec(0, 0, 0);
-	//cam.horizontal = vec(cam.viewport_w, 0, 0);
-	//cam.vertical = vec(0, cam.viewport_h, 0);
-	cam.left_bottom = vminus(vminus(vminus(cam.orig, vdivide(cam.horizontal, 2)), vdivide(cam.vertical, 2)), vec(0, 0, focal_len));
-	
+	cam.horizontal = vmult(axis[1], cam.viewport_h);
+	cam.vertical = vmult(axis[2], cam.viewport_w);
+	cam.left_bottom = vminus(vminus(vminus(cam.orig, vdivide(cam.horizontal, 2)), vdivide(cam.vertical, 2)), axis[0]);
 	return (cam);
 }
 

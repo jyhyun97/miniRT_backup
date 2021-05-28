@@ -6,7 +6,7 @@
 /*   By: jeonhyun <jeonhyun@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 13:07:49 by jeonhyun          #+#    #+#             */
-/*   Updated: 2021/05/21 15:42:32 by jeonhyun         ###   ########.fr       */
+/*   Updated: 2021/05/28 17:34:18 by jeonhyun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,12 @@ int				check_id(t_list *list);
 int				add_color(char **split, t_color *color);
 int				add_coordinate(char **split, t_vec *coor);
 int				add_normalized_vector(char **split, t_vec *normalized_vector);
-int				add_r(char **split, t_rt_info data, t_list *list);
+int				add_pl(char **split, t_rt_info data, t_list *list);
+
 int				add_a(char **split, t_rt_info data, t_list *list);
 int				add_c(char **split, t_rt_info data, t_list *list);
 int				add_l(char **split, t_rt_info data, t_list *list);
 int				add_sp(char **split, t_rt_info data, t_list *list);
-int				add_pl(char **split, t_rt_info data, t_list *list);
-int				add_sq(char **split, t_rt_info data, t_list *list);
 int				add_cy(char **split, t_rt_info data, t_list *list);
-int				add_tr(char **split, t_rt_info data, t_list *list);
 
 #endif

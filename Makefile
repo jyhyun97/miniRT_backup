@@ -10,7 +10,6 @@ SRCS_C = main.c\
 		 parsing/check.c\
 		 parsing/element_1.c\
 	   	 parsing/element_2.c\
-		 parsing/element_3.c\
 		 gnl/get_next_line.c\
 		 gnl/get_next_line_utils.c\
 		 rendering/set_image.c\

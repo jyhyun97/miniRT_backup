@@ -6,7 +6,7 @@
 /*   By: jeonhyun <jeonhyun@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 13:08:27 by jeonhyun          #+#    #+#             */
-/*   Updated: 2021/05/27 12:07:06 by jeonhyun         ###   ########.fr       */
+/*   Updated: 2021/05/28 21:50:40 by jeonhyun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,14 @@ double	vlength(t_vec vec);
 double	vdot(t_vec vec, t_vec vec2);
 t_vec	vcross(t_vec vec, t_vec vec2);
 t_vec	vunit(t_vec vec);
+t_vec		vnorm(t_vec vec);
 
 t_vec   vec(double x, double y, double z);
 t_point point(double x, double y, double z);
 t_color color(double r, double g, double b);
 t_ray   ray(t_point orig, t_vec dir);
 t_canvas    canvas(int width, int height);
-t_camera    camera(t_canvas *canvas, t_point orig, t_vec normal_vector);
+t_camera    camera(t_canvas *canvas, t_rt_info data);
 t_sphere    sphere(t_point center, double radius);
 t_plane		plane(t_point center, t_vec normal_vector);
 

@@ -6,18 +6,20 @@
 /*   By: jeonhyun <jeonhyun@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 13:08:09 by jeonhyun          #+#    #+#             */
-/*   Updated: 2021/05/21 19:02:34 by jeonhyun         ###   ########.fr       */
+/*   Updated: 2021/05/28 17:00:47 by jeonhyun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTURE_H
 # define STRUCTURE_H
 
+/*
 typedef struct	s_resolution
 {
 	int	width;
 	int	height;
 }				t_resolution;
+*/
 
 typedef struct	s_vec
 {
@@ -32,10 +34,10 @@ typedef struct s_vec	t_point;
 typedef struct	s_rt_info
 {
 	char			*id;
-	t_resolution	resolution;
+	//t_resolution	resolution;
 	t_vec			coor1;
-	t_vec			coor2;
-	t_vec			coor3;
+	//t_vec			coor2;
+	//t_vec			coor3;
 	t_vec			normal_vector;
 	t_color			color;
 	unsigned int	view_degree;
@@ -79,7 +81,7 @@ typedef struct	s_camera
 	double	viewport_w;
 	t_vec	horizontal;
 	t_vec	vertical;
-	double	focal_len;
+	t_vec	focal;
 	t_point	left_bottom;
 }				t_camera;
 
@@ -105,14 +107,6 @@ typedef struct	s_plane
 	t_color	color;
 }				t_plane;
 
-typedef struct	s_square
-{
-	t_point	center;
-	t_vec	normal_vector;
-	double	length;
-	t_color	color;
-}				t_square;
-
 typedef struct	s_cylinder
 {
 	t_point	center;
@@ -121,14 +115,6 @@ typedef struct	s_cylinder
 	double	height;
 	t_color	color;
 }				t_cylinder;
-
-typedef struct	s_triangle
-{
-	t_point	point1;
-	t_point	point2;
-	t_point	point3;
-	t_color	color;
-}				t_triangle;
 
 typedef struct	s_hit_record
 {

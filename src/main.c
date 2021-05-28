@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeonhyun <jeonhyun@student.42seoul.kr      +#+  +:+       +#+        */
+/*   By: jeonhyun <jeonhyun@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 13:07:24 by jeonhyun          #+#    #+#             */
-/*   Updated: 2021/05/21 16:55:37 by jeonhyun         ###   ########.fr       */
+/*   Updated: 2021/05/28 17:23:20 by jeonhyun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/parsing.h"
 #include "../include/rendering.h"
 #include "../include/structure.h"
+#include "../include/define.h"
 
 void	parsing(t_list *list, char *argv)
 {
@@ -26,16 +27,16 @@ void rendering(t_list *list)
 	void	*mlx;
 	void	*win;
 	t_image	img;
-	t_resolution resol;
+	//t_resolution resol;
 
 	mlx = mlx_init();
-	list->cur = list->head;
-	search_node(&list, "R");
-	resol.width = list->cur->data.resolution.width;
-	resol.height = list->cur->data.resolution.height;
+	//list->cur = list->head;
+	//search_node(&list, "R");
+	//resol.width = list->cur->data.resolution.width;
+	//resol.height = list->cur->data.resolution.height;
 
-	win = mlx_new_window(mlx, resol.width, resol.height, "miniRT");
-	img.img = mlx_new_image(mlx, resol.width, resol.height);
+	win = mlx_new_window(mlx, RESOL_W, RESOL_H, "miniRT");
+	img.img = mlx_new_image(mlx, RESOL_W, RESOL_H);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
 		
 	img = set_image(img, list);

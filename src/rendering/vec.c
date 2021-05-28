@@ -6,7 +6,7 @@
 /*   By: jeonhyun <jeonhyun@student.42seoul>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 19:22:45 by jeonhyun          #+#    #+#             */
-/*   Updated: 2021/05/26 12:14:51 by jeonhyun         ###   ########.fr       */
+/*   Updated: 2021/05/28 21:50:23 by jeonhyun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,3 +116,10 @@ t_vec	vunit(t_vec vec)
 	vec.z /= len;
 	return (vec);
 }
+
+t_vec		vnorm(t_vec vec)
+{
+	return (vmult(vec, 1 / vlength(vec)));
+}
+
+
