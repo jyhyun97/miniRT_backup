@@ -6,7 +6,7 @@
 /*   By: jeonhyun <jeonhyun@student.42seoul>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 19:22:45 by jeonhyun          #+#    #+#             */
-/*   Updated: 2021/05/28 21:50:23 by jeonhyun         ###   ########.fr       */
+/*   Updated: 2021/06/01 14:49:00 by jeonhyun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,11 +106,11 @@ t_vec	vunit(t_vec vec)
 	double	len;
 	
 	len = vlength(vec);
-	if (len == 0)
-	{
-		printf("Error\ncan't divide 0\n");
-		exit (-1);	
-	}
+	//if (len == 0)
+	//{
+	//	printf("Error\ncan't divide 0\n");
+	//	exit (-1);	
+	//}
 	vec.x /= len;
 	vec.y /= len;
 	vec.z /= len;

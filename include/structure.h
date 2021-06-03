@@ -6,7 +6,7 @@
 /*   By: jeonhyun <jeonhyun@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 13:08:09 by jeonhyun          #+#    #+#             */
-/*   Updated: 2021/05/28 17:00:47 by jeonhyun         ###   ########.fr       */
+/*   Updated: 2021/06/03 12:05:05 by jeonhyun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ typedef struct	s_camera
 	t_vec	vertical;
 	t_vec	focal;
 	t_point	left_bottom;
+	t_vec	normal_vector;
 }				t_camera;
 
 typedef struct	s_canvas

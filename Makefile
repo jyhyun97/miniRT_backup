@@ -13,6 +13,7 @@ SRCS_C = main.c\
 		 gnl/get_next_line.c\
 		 gnl/get_next_line_utils.c\
 		 rendering/set_image.c\
+		 rendering/set_object.c\
 		 rendering/create.c\
 		 rendering/vec.c
 SRCS = $(addprefix src/, $(SRCS_C))

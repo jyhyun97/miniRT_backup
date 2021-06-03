@@ -6,7 +6,7 @@
 /*   By: jeonhyun <jeonhyun@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 19:21:57 by jeonhyun          #+#    #+#             */
-/*   Updated: 2021/05/28 21:55:51 by jeonhyun         ###   ########.fr       */
+/*   Updated: 2021/06/03 16:00:49 by jeonhyun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,27 +61,33 @@ t_canvas	canvas(int width, int height)
 	return (canvas);
 }
 
-double get_radian(double fov)
+double get_radian(double degree)
 {
-	return (fov / M_PI);
+	return (degree * M_PI / 180);
 }
-
 
 t_camera	camera(t_canvas *canvas, t_rt_info data)
 {
 	t_camera	cam;
-	t_vec	axis[3];
+	t_point	lookfrom = data.coor1;
+	t_point	lookat = data.normal_vector;
+	t_vec		vup = vec(0, 1, 0);
+	//t_vec		vup = vmult_(vec(0, 1, 0), vunit(data.normal_vector));
 
-	cam.orig = data.coor1;
-	cam.viewport_h = 2 * tan(data.view_degree / 2);
-	cam.viewport_w = cam.viewport_h * (double)(canvas->height/canvas->width);
-	axis[0] = vnorm(vmult(data.normal_vector, -1));
-	axis[1] = vcross(vec(0, 1, 0), axis[0]);
-	axis[2] = vcross(axis[0], axis[1]);
+	//cam.orig = data.coor1;
+	cam.viewport_h = 2 * tan(get_radian(data.view_degree) / 2);
+	cam.viewport_w = cam.viewport_h * canvas->aspect_ratio;
+	cam.focal = vec(0, 0, 1);
 
-	cam.horizontal = vmult(axis[1], cam.viewport_h);
-	cam.vertical = vmult(axis[2], cam.viewport_w);
-	cam.left_bottom = vminus(vminus(vminus(cam.orig, vdivide(cam.horizontal, 2)), vdivide(cam.vertical, 2)), axis[0]);
+	t_vec w = vunit(vminus(lookfrom,  lookat));
+	t_vec u = vunit(vcross(vup, w));
+	t_vec v = vcross(w, u);
+	
+	cam.orig = lookfrom;
+	cam.horizontal = vmult_(vec(cam.viewport_w, 0, 0), u);//*u
+	cam.vertical = vmult_(vec(0, cam.viewport_h, 0), v);//*v
+	cam.left_bottom = vminus(vminus(vminus(cam.orig, vdivide(cam.horizontal, 2)), vdivide(cam.vertical, 2)), w);
+	cam.normal_vector = data.normal_vector;
 	return (cam);
 }
 
@@ -100,4 +106,16 @@ t_plane		plane(t_point center, t_vec normal_vector)
 	pl.center = center;
 	pl.normal_vector = normal_vector;
 	return (pl);
+}
+
+t_cylinder cylinder(t_point center, t_vec normal_vector, double diameter, double height)
+{
+	t_cylinder cy;
+
+	cy.center = center;
+	cy.normal_vector = normal_vector;
+	cy.diameter = diameter;
+	cy.height = height;
+
+	return (cy);
 }
