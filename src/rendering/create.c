@@ -6,7 +6,7 @@
 /*   By: jeonhyun <jeonhyun@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 19:21:57 by jeonhyun          #+#    #+#             */
-/*   Updated: 2021/06/03 16:00:49 by jeonhyun         ###   ########.fr       */
+/*   Updated: 2021/06/04 15:52:50 by jeonhyun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,4 +118,23 @@ t_cylinder cylinder(t_point center, t_vec normal_vector, double diameter, double
 	cy.height = height;
 
 	return (cy);
+}
+
+t_light light(t_point center, double brightness, t_color color)
+{
+	t_light	li;
+
+	li.center = center;
+	li.brightness = brightness;
+	li.color = color;
+	return (li);
+}
+
+t_ambient ambient(double brightness, t_color color)
+{
+	t_ambient	am;
+	
+	am.brightness = brightness;
+	am.color = color;
+	return (am);
 }

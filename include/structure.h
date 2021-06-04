@@ -6,7 +6,7 @@
 /*   By: jeonhyun <jeonhyun@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 13:08:09 by jeonhyun          #+#    #+#             */
-/*   Updated: 2021/06/03 12:05:05 by jeonhyun         ###   ########.fr       */
+/*   Updated: 2021/06/04 15:35:44 by jeonhyun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,5 +133,18 @@ typedef struct	s_object
 	void	*element;
 	void	*next;
 }				t_object;
+
+typedef struct	s_light
+{
+	t_point	center;
+	double	brightness;
+	t_color	color;
+}				t_light;
+
+typedef struct	s_ambient
+{
+	double	brightness;
+	t_color	color;
+}				t_ambient;
 
 #endif

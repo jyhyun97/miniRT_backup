@@ -87,7 +87,6 @@ double intersect_cy(t_rt_info data, t_ray ray)
 		return (t);
 	else
 		return (-1);
-
 }
 
 
